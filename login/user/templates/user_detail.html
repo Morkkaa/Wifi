@@ -1,0 +1,17 @@
+{% extends 'Base.html' %}
+
+{% block title %}
+    {{ user.name }} - {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+    <div class="card" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Пользователь: {{ user.name }}</li>
+            <li class="list-group-item">Пароль: {{ user.password }}</li>
+            <li class="list-group-item">Дата регистрации: {{ user.data }}</li>
+            <li class="list-group-item">Время доступа в днях: {{ user.access_time }}</li>
+        </ul>
+    </div>
+{% endblock %}

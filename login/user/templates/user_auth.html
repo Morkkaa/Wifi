@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Подключение к WiFi</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" href="{% static 'media/2.jpg' %}">
+
+</head>
+<body>
+<center>
+<div class="card text-center" style="width: 18rem; top: 100px; ">
+  <img src="{% static 'media/1.jpg' %}" class="card-img-top" alt="хммм...">
+  <div class="card-body">
+    <h5 align="center" class="card-title">Подключение к WiFi</h5>
+    <p align="center" class="card-text">Введите ваш логин и пароль для подключения к WiFi</p>
+      <form action="{% url 'login_url' %}" method="post">
+          {% csrf_token %}
+
+          {% for field in form %}
+            <div class="form-group">
+                {% if field.errors %}
+                    <div class="alert alert-danger">
+                        {{ field.errors }}
+                    </div>
+
+                {% endif %}
+
+                {{ field.label }}
+                {{ field }}
+
+            </div>
+
+          {% endfor %}
+          <button type="submit" class="btn btn-dark">Ввод</button>
+      </form>
+
+  </div>
+</div>
+ </center>
+
+</body>
+</html>
