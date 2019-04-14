@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 from django.views.generic import View
 from .forms import *
@@ -15,6 +15,20 @@ class Authorization(View):
         if bound_form.is_valid():
             return HttpResponse('Вход выполнен')
         return render(request, 'user_auth.html', context={'form':bound_form})
+
+class UserCreate(View):
+    def get(self, request):
+        form = UserForm()
+        return render(request, 'user_create_form.html', context={'form':form})
+
+
+    def post(self,request):
+        bound_form = UserForm(request.POST)
+        if bound_form.is_valid():
+            new_user=bound_form.save()
+            return render(request, 'Users_list.html')
+        return render(request, 'user_create_form.html', context={'form':bound_form})
+
 
 #def authorization(request):
 #    return render(request, 'user_auth.html')
